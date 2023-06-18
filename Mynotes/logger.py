@@ -4,13 +4,12 @@ from note_create import title, note_text
 
 filename = 'Mynotes\\notes.csv'
 datenote = datetime.datetime.today().strftime("%d-%m-%Y / %H:%M:%S")
+
 def print_note():    
     if os.path.exists(filename):
-        print('\nВывод данных из файла: ')
+        print('\nВывод заметок из блокнота: ')
         with open(filename, 'r', encoding = 'utf-8') as file:
-            list_note = file.readlines()
-            for el in list_note:
-                print(el, end="")
+            print(file.read())
     else:
         print('Файла не существует')
 
@@ -25,7 +24,7 @@ def input_note():
                 id = int(len(lines))
                 with open(filename, 'a', encoding = 'utf-8') as file:
                     id+=1
-                    file.write(f'{id}; {name}; {note}; {datenote}\n')        
+                    file.write(f'ID: {id}; {name}; {note}; {datenote}\n')        
     else:
         with open(filename, 'a', encoding = 'utf-8') as file:
             id = 1
@@ -38,7 +37,7 @@ def filter_note(filter_string):
         listFilter = filter_string.split(';')       
         is_found = False
         for el in listNote:
-            count = 0
+            count = 1
             temprecord = el.split(';')
             for record in temprecord:
                 for elFilter in listFilter:
@@ -53,16 +52,15 @@ def filter_note(filter_string):
 def change_note():
     with open(filename, 'r', encoding = 'utf-8') as file:
         findedString = file.readlines()
-        index = 1
         for el in findedString:            
-            print(f'{index} {el}', end='')
-            index +=1
-        numString = int(input('Введите номер записи, которую хотите изменить: '))
+            print(f'{el}', end='')
+        numString = int(input('Введите id записи, которую хотите изменить: '))
         if numString-1 in range(len(findedString)):
             print('Введите новые данные: ')
             name = title()
             note = note_text()
-            findedString[numString-1] = f'{name}; {note}\n'
+            id = numString
+            findedString[numString-1] =  f'{id}; {name}; {note}; {datenote}\n'
             with open(filename, 'w', encoding = 'utf-8') as file:
                 file.writelines(findedString)
                 print('Изменения успешно сохранены')
