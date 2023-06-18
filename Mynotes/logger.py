@@ -18,18 +18,19 @@ def input_note():
     print('Введите данные для записи в файл: ')
     name = title()
     note = note_text()
-    with open(filename, 'r', encoding = 'utf-8') as file:
-        if os.stat(filename).st_size != 0:
-            lines = file.readlines()            
-            id = int(len(lines))
-            with open(filename, 'a', encoding = 'utf-8') as file:
-                id+=1
-                file.write(f'{id}; {name}; {note}; {datenote}\n')        
-        else:
-            with open(filename, 'a', encoding = 'utf-8') as file:
-                id = 1
-                file.write(f'{id}; {name}; {note}; {datenote}\n')
-        print('Заметка успешно сохранена')
+    if os.path.exists(filename):
+        with open(filename, 'r', encoding = 'utf-8') as file:
+            if os.stat(filename).st_size != 0:
+                lines = file.readlines()            
+                id = int(len(lines))
+                with open(filename, 'a', encoding = 'utf-8') as file:
+                    id+=1
+                    file.write(f'{id}; {name}; {note}; {datenote}\n')        
+    else:
+        with open(filename, 'a', encoding = 'utf-8') as file:
+            id = 1
+            file.write(f'{id}; {name}; {note}; {datenote}\n')
+    print('Заметка успешно сохранена')
 
 def filter_note(filter_string):
     with open(filename, 'r', encoding = 'utf-8') as file:
