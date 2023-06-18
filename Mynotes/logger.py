@@ -16,13 +16,18 @@ def print_note():
 def input_note():
     print('Введите данные для записи в файл: ')
     name = title()
-    note = note_text() 
-    id = 1   
-    datenote = datetime.datetime.today().strftime("%d-%m-%Y / %H:%M:%S")
-    with open(filename, 'a', encoding = 'utf-8') as file:
+    note = note_text()
+    with open(filename, 'r', encoding = 'utf-8') as file:
         if os.stat(filename).st_size != 0:
-            id+=1        
-        file.write(f'{id}; {name}; {note}; {datenote}\n')
+            lines = file.readlines()            
+            id = int(len(lines))
+            with open(filename, 'a', encoding = 'utf-8') as file:
+                id+=1
+                file.write(f'{id}; {name}; {note}; {datenote}\n')        
+        else:
+            with open(filename, 'a', encoding = 'utf-8') as file:
+                id = 1
+                file.write(f'{id}; {name}; {note}; {datenote}\n')
         print('Заметка успешно сохранена')
 
 def filter_note(filter_string):
