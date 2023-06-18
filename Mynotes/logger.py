@@ -3,6 +3,7 @@ import datetime
 from note_create import title, note_text
 
 filename = 'Mynotes\\notes.csv'
+datenote = datetime.datetime.today().strftime("%d-%m-%Y / %H:%M:%S")
 def print_note():    
     if os.path.exists(filename):
         print('\nВывод данных из файла: ')
