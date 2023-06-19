@@ -21,9 +21,8 @@ def input_note():
         with open(filename, 'r', encoding = 'utf-8') as file:
             if os.stat(filename).st_size != 0:
                 lines = file.readlines()            
-                id = int(len(lines))
+                id = int(lines[len(lines)-1][0])+1
                 with open(filename, 'a', encoding = 'utf-8') as file:
-                    id+=1
                     file.write(f'ID: {id}; {name}; {note}; {datenote}\n')        
     else:
         with open(filename, 'a', encoding = 'utf-8') as file:

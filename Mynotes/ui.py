@@ -16,7 +16,7 @@ def interface():
         elif comand == '2':
             print_note()
         elif comand == '3':
-            print('Введите параметры поиска через ";": ')
+            print('Введите параметры поиска через ";". Для поиска по дате вводите в формате dd-mm-yyyy: ')
             filterString = input()
             filter_note(filterString)
         elif comand == '4':
