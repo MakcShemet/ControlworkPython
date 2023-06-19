@@ -73,10 +73,15 @@ def delete_note():
         for el in deletedString:            
             print(f'{el}', end='')
         numString = int(input('\nВведите id заметки, которую хотите удалить: '))
-    if numString-1 in range(len(deletedString)):
-        with open(filename, 'w', encoding = 'utf-8') as file:        
-            del deletedString[numString-1]
-            file.writelines(deletedString)
-            print('Заметка успешно удалена')
-    else:
-        print('Такой заметки в файле не существует')
+        index = len(deletedString)
+        for element in deletedString:
+            if element[0] == str(numString):
+                index = deletedString.index(element)
+                print(index)                
+        if index in range(len(deletedString)):
+            with open(filename, 'w', encoding = 'utf-8') as file:                       
+                del deletedString[index]
+                file.writelines(deletedString)
+                print('Заметка успешно удалена')
+        else:
+            print('Такой заметки в блокноте не существует')
