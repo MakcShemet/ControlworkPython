@@ -28,7 +28,7 @@ def input_note():
     else:
         with open(filename, 'a', encoding = 'utf-8') as file:
             id = 1
-            file.write(f'{id}; {name}; {note}; {datenote}\n')
+            file.write(f'ID: {id}; {name}; {note}; {datenote}\n')
     print('Заметка успешно сохранена')
 
 def filter_note(filter_string):
