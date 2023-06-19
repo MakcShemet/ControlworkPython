@@ -1,5 +1,5 @@
 ﻿def title():
-    name = input('Введите аголовок заметки: ')
+    name = input('Введите заголовок заметки: ')
     return name
 
 def note_text():

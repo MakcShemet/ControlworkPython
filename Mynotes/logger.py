@@ -60,7 +60,7 @@ def change_note():
             name = title()
             note = note_text()
             id = numString
-            findedString[numString-1] =  f'{id}; {name}; {note}; {datenote}\n'
+            findedString[numString-1] =  f'ID: {id}; {name}; {note}; {datenote}\n'
             with open(filename, 'w', encoding = 'utf-8') as file:
                 file.writelines(findedString)
                 print('Изменения успешно сохранены')
